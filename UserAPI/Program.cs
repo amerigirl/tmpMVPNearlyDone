@@ -4,14 +4,24 @@ using UserDAL.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 //this will help it work for swagger
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("CorsPolicy", builder =>
+//    builder.AllowAnyOrigin()
+//    .AllowAnyMethod()
+//    .AllowAnyHeader());
+//});
+// Add services to the container.
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", builder =>
-    builder.AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
+    options.AddDefaultPolicy(
+    policy =>
+    {
+        policy.WithOrigins("https://localhost:4200",
+     "http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+    });
 });
-// Add services to the container.
 
 builder.Services.AddControllers();
 
@@ -38,4 +48,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseCors();
+
 app.Run();
+
