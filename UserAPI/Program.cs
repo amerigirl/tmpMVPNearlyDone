@@ -3,7 +3,7 @@ using UserDAL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//this will help it work for swagger
+
 //builder.Services.AddCors(options =>
 //{
 //    options.AddPolicy("CorsPolicy", builder =>
@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 //});
 // Add services to the container.
 
+//this will help it work for swagger
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
